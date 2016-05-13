@@ -14,10 +14,24 @@ public class Venue {
     return venue_name;
   }
 
+  public int getVenueId() {
+    return id;
+  }
+
   public static List<Venue> all() {
     String sql = "SELECT * FROM venues;";
     try (Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Venue.class);
+    }
+  }
+
+  @Override
+  public boolean equals(Object otherVenue) {
+    if (!(otherVenue instanceof Venue)) {
+      return false;
+    } else {
+      Venue newVenue = (Venue) otherVenue;
+      return this.getVenueName().equals(newVenue.getVenueName()) && this.getVenueId() == newVenue.getVenueId();
     }
   }
 }
