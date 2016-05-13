@@ -31,17 +31,17 @@ public class AppTest extends FluentTest {
   @Test
   public void bandIsCreatedAndDisplayedTest() {
     goTo("http://localhost:4567/");
-    fill("#band_input").with("U2");
+    fill("#band_input").with("Black Flag");
     submit(".btn");
-    assertThat(pageSource()).contains("U2");
+    assertThat(pageSource()).contains("Black Flag");
   }
 
   @Test
-  public void venueIsCreatedAndSavedTest() {
+  public void venueIsCreatedAndDisplayedTest() {
     goTo("http://localhost:4567/");
     fill("#venue_input").with("White Eagle");
     submit(".btn");
-    assertEquals(1, Venue.all().size());
+    assertThat(pageSource()).contains("White Eagle");
   }
 
   @Test
