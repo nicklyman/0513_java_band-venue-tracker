@@ -34,4 +34,14 @@ public class Band {
       return this.getBandName().equals(newBand.getBandName()) && this.getBandId() == newBand.getBandId();
     }
   }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO bands(band_name) VALUES (:band_name);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("band_name", this.band_name)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }
