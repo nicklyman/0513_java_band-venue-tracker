@@ -15,5 +15,20 @@ public class App {
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/bands/band_form", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Band band = new Band(request.queryParams("band_input"));
+      if ((band.getBandName()).trim().length() != 0) {
+        band.save();
+      }
+      Venue venue = new Venue(request.queryParams("venue_input"));
+      if ((venue.getVenueName()).trim().length() != 0) {
+        venue.save();
+      }
+      model.put("bands", Band.all());
+      response.redirect("/");
+      return null;
+    });
   }
 }

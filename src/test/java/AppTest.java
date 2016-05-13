@@ -27,4 +27,12 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Band and Venue Tracker");
     assertThat(pageSource()).contains("Add a New Band");
   }
+
+  @Test
+  public void bandIsCreatedAndDisplayedTest() {
+    goTo("http://localhost:4567/");
+    fill("#band_input").with("U2");
+    submit(".btn");
+    assertThat(pageSource()).contains("U2");
+  }
 }
