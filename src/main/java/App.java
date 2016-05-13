@@ -61,5 +61,13 @@ public class App {
       response.redirect("/bands/" + band.getBandId());
       return null;
     });
+
+    get("/band/:band_id/delete", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Band band = Band.find(Integer.parseInt(request.params(":band_id")));
+      band.delete();
+      response.redirect("/");
+      return null;
+    });
   }
 }

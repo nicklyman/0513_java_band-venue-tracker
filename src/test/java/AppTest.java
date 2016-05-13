@@ -67,4 +67,14 @@ public class AppTest extends FluentTest {
     goTo(url);
     assertThat(pageSource()).contains("Pearl Jam");
   }
+
+  @Test
+  public void bandNameIsDeletedTest() {
+    Band testBand = new Band("ABBA");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
+    goTo(url);
+    click("a", withText("Warning: This will delete this band!!!"));
+    assertThat(pageSource()).doesNotContain("ABBA");
+  }
 }
