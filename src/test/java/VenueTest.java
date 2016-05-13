@@ -64,4 +64,26 @@ public class VenueTest {
     myVenue.update("Portland Zoo");
     assertEquals("Portland Zoo", Venue.find(myVenue.getVenueId()).getVenueName());
   }
+
+  @Test
+  public void addBand_addsBandToVenue() {
+    Band myBand = new Band("U2");
+    myBand.save();
+    Venue myVenue = new Venue("Edgefield");
+    myVenue.save();
+    myVenue.addBand(myBand);
+    Band savedBand = myVenue.getBands().get(0);
+    assertTrue(myBand.equals(savedBand));
+  }
+
+@Test
+  public void getBands_returnsAllBands_List() {
+    Band myBand = new Band("U2");
+    myBand.save();
+    Venue myVenue = new Venue("Edgefield");
+    myVenue.save();
+    myVenue.addBand(myBand);
+    List savedBands = myVenue.getBands();
+    assertEquals(1, savedBands.size());
+  }
 }

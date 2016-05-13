@@ -86,4 +86,16 @@ public class BandTest {
     List savedVenues = myBand.getVenues();
     assertEquals(1, savedVenues.size());
   }
+
+  // @Test
+  // public void delete_deletesAllVenuesAndBandsAssociations() {
+  //   Band myBand = new Band("U2");
+  //   myBand.save();
+  //   Venue myVenue = new Venue("Edgefield");
+  //   myVenue.save();
+  //   myBand.addVenue(myVenue);
+  //   myBand.delete();
+  //   assertEquals(0, Band.all().size());
+  //   assertEquals(0, myVenue.getBands().size());
+  // }
 }
