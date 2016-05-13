@@ -54,4 +54,16 @@ public class Venue {
       return venue;
     }
   }
+
+  public void update(String venue_name) {
+    if (venue_name.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE venues SET venue_name = :venue_name WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("venue_name", venue_name)
+          .addParameter("id", this.getVenueId())
+          .executeUpdate();
+      }
+    }
+  }
 }

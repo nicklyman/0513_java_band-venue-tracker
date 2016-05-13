@@ -56,4 +56,12 @@ public class VenueTest {
     Venue savedVenue = Venue.find(myVenue.getVenueId());
     assertTrue(myVenue.equals(savedVenue));
   }
+
+  @Test
+  public void update_updateVenueInDatabase() {
+    Venue myVenue = new Venue("Edgefield");
+    myVenue.save();
+    myVenue.update("Portland Zoo");
+    assertEquals("Portland Zoo", Venue.find(myVenue.getVenueId()).getVenueName());
+  }
 }
