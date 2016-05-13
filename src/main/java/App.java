@@ -69,5 +69,13 @@ public class App {
       response.redirect("/");
       return null;
     });
+
+    get("/bands/:band_id/venues/:venue_id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Venue venue = Venue.find(Integer.parseInt(request.params(":venue_id")));
+      model.put("venue", venue);
+      model.put("template", "templates/venue.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

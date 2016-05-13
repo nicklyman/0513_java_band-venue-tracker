@@ -37,6 +37,14 @@ public class AppTest extends FluentTest {
   }
 
   @Test
+  public void venueIsCreatedAndSavedTest() {
+    goTo("http://localhost:4567/");
+    fill("#venue_input").with("White Eagle");
+    submit(".btn");
+    assertEquals(1, Venue.all().size());
+  }
+
+  @Test
   public void bandAndVenueFormIsDisplayed() {
     Band testBand = new Band("Nirvana");
     testBand.save();
