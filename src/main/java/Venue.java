@@ -9,4 +9,8 @@ public class Venue {
   public Venue(String name) {
     this.venue_name = name;
   }
+
+  public String getVenueName() {
+    return venue_name;
+  }
 }
