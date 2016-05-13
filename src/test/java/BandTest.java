@@ -21,4 +21,9 @@ public class BandTest {
     Band myBand = new Band("U2");
     assertEquals("U2", myBand.getBandName());
   }
+
+  @Test
+  public void all_emptyAtFirst_0() {
+    assertEquals(0, Band.all().size());
+  }
 }

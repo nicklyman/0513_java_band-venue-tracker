@@ -13,4 +13,11 @@ public class Band {
   public String getBandName() {
     return band_name;
   }
+
+  public static List<Band> all() {
+    String sql = "SELECT * FROM bands;";
+    try (Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Band.class);
+    }
+  }
 }
