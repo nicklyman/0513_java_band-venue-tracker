@@ -1,0 +1,26 @@
+<h1>Band and Venue Tracker</h1>
+
+<hr>
+
+<p>Keep track of your favorite bands and venues!</p>
+
+#if ($bands.size() != 0)
+  <hr>
+  <h4>List of Bands You are Tracking</h4>
+  <ul>
+    #foreach ($band in $bands)
+      <li><a href="/bands/$band.getBandId()">$band.getBandName()</a></li>
+    #end
+  </ul>
+#end
+
+<hr>
+
+<form action="/bands/band_form" method="post">
+  <label for="band_input">Add a New Band</label>
+  <input type="text" id="band_input" name="band_input" class="form-control">
+  <label for="venue_input">Add a New Venue</label>
+  <input type="text" id="venue_input" name="venue_input" class="form-control">
+  <br>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
