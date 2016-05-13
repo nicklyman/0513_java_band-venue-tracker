@@ -12,7 +12,7 @@
 
 #if ($band.getVenues().size() != 0)
   <hr>
-  <h4>List of Existing Venues</h4>
+  <h4>List of Venues This Band Has Played</h4>
   <ul>
     #foreach ($venue in $band.getVenues())
       <li><a href="/bands/$band.getBandId()/venues/$venue.getVenueId()">$venue.getVenueName()</a></li>
