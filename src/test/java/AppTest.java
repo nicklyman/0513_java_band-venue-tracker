@@ -92,7 +92,7 @@ public class AppTest extends FluentTest {
     String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
     goTo(url);
     click("a", withText("Warning: This will delete this band!!!"));
-    assertThat(pageSource()).doesNotContain("ABBA");
+    assertThat(pageSource()).doesNotContain("ABBA").contains("Band and Venue Tracker");
   }
 
   @Test
@@ -105,5 +105,15 @@ public class AppTest extends FluentTest {
     submit("#update_venue_button");
     goTo(url);
     assertThat(pageSource()).contains("Dodger Stadium");
+  }
+
+  @Test
+  public void venueNameIsDeletedTest() {
+    Venue testVenue = new Venue("Edgefield");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getVenueId());
+    goTo(url);
+    click("a", withText("Warning: This will delete this venue!!!"));
+    assertThat(pageSource()).doesNotContain("Edgefield").contains("Band and Venue Tracker");
   }
 }

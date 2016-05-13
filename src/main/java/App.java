@@ -105,5 +105,13 @@ public class App {
       response.redirect("/venues/" + venue.getVenueId());
       return null;
     });
+
+    get("/venue/:venue_id/delete", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Venue venue = Venue.find(Integer.parseInt(request.params(":venue_id")));
+      venue.delete();
+      response.redirect("/");
+      return null;
+    });
   }
 }
