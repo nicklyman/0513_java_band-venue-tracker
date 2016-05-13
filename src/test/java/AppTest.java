@@ -94,4 +94,16 @@ public class AppTest extends FluentTest {
     click("a", withText("Warning: This will delete this band!!!"));
     assertThat(pageSource()).doesNotContain("ABBA");
   }
+
+  @Test
+  public void venueNameIsUpdatedTest() {
+    Venue testVenue = new Venue("Coachella");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getVenueId());
+    goTo(url);
+    fill("#update_venue").with("Dodger Stadium");
+    submit("#update_venue_button");
+    goTo(url);
+    assertThat(pageSource()).contains("Dodger Stadium");
+  }
 }
