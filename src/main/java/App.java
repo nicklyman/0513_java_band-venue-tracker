@@ -54,8 +54,8 @@ public class App {
       Venue newVenue = new Venue(request.queryParams("venue_input"));
       if ((newVenue.getVenueName()).trim().length() != 0) {
         newVenue.save();
+        band.addVenue(newVenue);
       }
-      band.addVenue(newVenue);
       model.put("band", band);
       response.redirect("/bands/" + band.getBandId());
       return null;
