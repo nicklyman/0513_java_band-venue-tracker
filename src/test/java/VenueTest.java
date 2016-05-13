@@ -21,4 +21,9 @@ public class VenueTest {
     Venue myVenue = new Venue("Edgefield");
     assertEquals("Edgefield", myVenue.getVenueName());
   }
+
+  @Test
+  public void all_emptyAtFirst_0() {
+    assertEquals(0, Venue.all().size());
+  }
 }
