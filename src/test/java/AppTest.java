@@ -35,4 +35,13 @@ public class AppTest extends FluentTest {
     submit(".btn");
     assertThat(pageSource()).contains("U2");
   }
+
+  @Test
+  public void bandAndVenueFormIsDisplayed() {
+    Band testBand = new Band("Nirvana");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
+    goTo(url);
+    assertThat(pageSource()).contains("Nirvana");
+  }
 }

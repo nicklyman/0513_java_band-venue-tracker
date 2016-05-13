@@ -1,0 +1,29 @@
+<h1>Category: $band.getBandName()</h1>
+
+<form action="/bands/$band.getBandId()" method="post">
+  <label for="update_band">Update Band</label>
+  <input type="text" id="update_band" name="update_band" class="form-control">
+  <br>
+  <button id="update_band_button" type="submit" class="btn btn-primary">Update Band</button>
+</form>
+
+<br>
+<a href="/band/$band.getBandId()/delete" class="btn btn-danger">Warning: This will delete this band!!!</a>
+
+#if ($band.getVenues().size() != 0)
+  <hr>
+  <h4>List of Existing Venues</h4>
+  <ul>
+    #foreach ($venue in $band.getVenues())
+      <li><a href="/bands/$band.getBandId()/venues/$venue.getVenueId()">$venue.getVenueName()</a></li>
+    #end
+  </ul>
+#end
+
+<hr>
+
+<form action="/bands/$band.getBandId()/venue_form" method="post">
+  <label for="venue_input">Add a New Venue</label>
+  <input type="text" id="venue_input" name="venue_input">
+  <button id="add_venue" type="submit" class="btn btn-success">Add a New Venue</button>
+</form>
