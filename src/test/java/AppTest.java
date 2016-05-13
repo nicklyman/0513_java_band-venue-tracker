@@ -54,6 +54,15 @@ public class AppTest extends FluentTest {
   }
 
   @Test
+  public void venueFormIsDisplayed() {
+    Venue testVenue = new Venue("Timberline");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getVenueId());
+    goTo(url);
+    assertThat(pageSource()).contains("Timberline");
+  }
+
+  @Test
   public void venueIsAddedToBandTest() {
     Band testBand = new Band("U2");
     testBand.save();
