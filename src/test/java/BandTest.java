@@ -56,4 +56,12 @@ public class BandTest {
     Band savedBand = Band.find(myBand.getBandId());
     assertTrue(myBand.equals(savedBand));
   }
+
+  @Test
+  public void update_updateBandInDatabase() {
+    Band myBand = new Band("U2");
+    myBand.save();
+    myBand.update("Nirvana");
+    assertEquals("Nirvana", Band.find(myBand.getBandId()).getBandName());
+  }
 }

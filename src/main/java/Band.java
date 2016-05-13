@@ -54,4 +54,16 @@ public class Band {
       return band;
     }
   }
+
+  public void update(String band_name) {
+    if (band_name.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE bands SET band_name = :band_name WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("band_name", band_name)
+          .addParameter("id", this.getBandId())
+          .executeUpdate();
+      }
+    }
+  }
 }
