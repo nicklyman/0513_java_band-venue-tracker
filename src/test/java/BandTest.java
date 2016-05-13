@@ -64,4 +64,26 @@ public class BandTest {
     myBand.update("Nirvana");
     assertEquals("Nirvana", Band.find(myBand.getBandId()).getBandName());
   }
+
+  @Test
+  public void addVenue_addsVenueToBand_true() {
+    Band myBand = new Band("U2");
+    myBand.save();
+    Venue myVenue = new Venue("Edgefield");
+    myVenue.save();
+    myBand.addVenue(myVenue);
+    Venue savedVenue = myBand.getVenues().get(0);
+    assertTrue(myVenue.equals(savedVenue));
+  }
+
+  @Test
+  public void getVenues_returnsAllVenues_List() {
+    Band myBand = new Band("U2");
+    myBand.save();
+    Venue myVenue = new Venue("Edgefield");
+    myVenue.save();
+    myBand.addVenue(myVenue);
+    List savedVenues = myBand.getVenues();
+    assertEquals(1, savedVenues.size());
+  }
 }
