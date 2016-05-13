@@ -10,7 +10,7 @@ _This web application allows a user to add, update, delete, and list bands. The 
 
 ## Setup/Installation Requirements
 
-* _Link to repository: https://github.com/nicklyman/0513_java_bands-venues.git_
+* _Link to repository: https://github.com/nicklyman/0513_java_band-venue-tracker.git_
 * _Clone this repository to your Github account_
 * _Create a project directory up on your computer_
 * _Have Java installed on your computer_
