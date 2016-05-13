@@ -51,5 +51,15 @@ public class App {
       response.redirect("/bands/" + band.getBandId());
       return null;
     });
+
+    post("/bands/:band_id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Band band = Band.find(Integer.parseInt(request.params(":band_id")));
+      String updateBandName = request.queryParams("update_band");
+      band.update(updateBandName);
+      model.put("band", band);
+      response.redirect("/bands/" + band.getBandId());
+      return null;
+    });
   }
 }

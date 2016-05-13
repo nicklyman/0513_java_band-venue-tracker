@@ -44,4 +44,27 @@ public class AppTest extends FluentTest {
     goTo(url);
     assertThat(pageSource()).contains("Nirvana");
   }
+
+  @Test
+  public void venueIsAddedToBandTest() {
+    Band testBand = new Band("U2");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
+    goTo(url);
+    fill("#venue_input").with("Edgefield");
+    submit("#add_venue");
+    assertThat(pageSource()).contains("Edgefield");
+  }
+
+  @Test
+  public void bandNameIsUpdatedTest() {
+    Band testBand = new Band("U2");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
+    goTo(url);
+    fill("#update_band").with("Pearl Jam");
+    submit("#update_band_button");
+    goTo(url);
+    assertThat(pageSource()).contains("Pearl Jam");
+  }
 }
