@@ -1,4 +1,4 @@
-<h1>Category: $band.getBandName()</h1>
+<h1>Band: $band.getBandName()</h1>
 
 <hr>
 
@@ -14,7 +14,7 @@
 
 #if ($band.getVenues().size() != 0)
   <hr>
-  <h4>List of Venues This Band Has Played</h4>
+  <h4>List of Venues $band.getBandName() Has Played At</h4>
   <ul>
     #foreach ($venue in $band.getVenues())
       <li><a href="/bands/$band.getBandId()/venues/$venue.getVenueId()">$venue.getVenueName()</a></li>

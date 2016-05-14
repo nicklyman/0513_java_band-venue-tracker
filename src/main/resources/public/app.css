@@ -1,0 +1,32 @@
+body {
+  text-align: center;
+  font-family: monospace;
+  background-color: gray;
+}
+
+h1 {
+  color: orange;
+  font-weight: bold;
+  font-size: 42px;
+  text-shadow: 1px 3px red;
+}
+
+h4 {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+}
+
+li, a {
+  font-size: 28px;
+  color: blue;
+  list-style: none;
+}
+
+label {
+  font-size: 20px;
+}
+
+.btn {
+  font-size: 16px;
+}
