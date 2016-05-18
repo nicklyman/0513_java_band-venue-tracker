@@ -24,4 +24,16 @@
 
 <hr>
 
+<form action="/venues/$venue.getVenueId()/venueBand_form" method="post">
+  <label for="band_input">Add a Band That Has Played at $venue.getVenueName()</label>
+  <br>
+  #foreach($band in $allBands)
+    <input type="checkbox" class="band_input" name="band_input" value="$band.getBandId()"> $band.getBandName()<br>
+  #end
+  <br>
+  <button id="add_band" type="submit" class="btn btn-success">Bands That Have Played at $venue.getVenueName()</button>
+</form>
+
+<hr>
+
 <a href="/" class="btn btn-success">Home</a>

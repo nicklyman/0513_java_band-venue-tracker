@@ -37,6 +37,7 @@ public class Venue {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
+      // String sql = "INSERT INTO venues (venue_name) VALUES (:venue_name) ON CONFLICT (venue_name) DO NOTHING;";
       String sql = "INSERT INTO venues (venue_name) VALUES (:venue_name);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("venue_name", this.venue_name)

@@ -37,6 +37,7 @@ public class Band {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
+      // String sql = "INSERT INTO bands (band_name) VALUES (:band_name) ON CONFLICT (band_name) DO NOTHING;";
       String sql = "INSERT INTO bands (band_name) VALUES (:band_name);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("band_name", this.band_name)

@@ -23,11 +23,18 @@ public class App {
       if ((band.getBandName()).trim().length() != 0) {
         band.save();
       }
+      model.put("bands", Band.all());
+      response.redirect("/");
+      return null;
+    });
+
+    post("/venues/venue_form", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
       Venue venue = new Venue(request.queryParams("venue_input"));
       if ((venue.getVenueName()).trim().length() != 0) {
         venue.save();
       }
-      model.put("bands", Band.all());
+      model.put("venues", Venue.all());
       response.redirect("/");
       return null;
     });
@@ -50,16 +57,29 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/bands/:band_id/venue_form", (request, response) -> {
+    post("/bands/:band_id/bandVenue_form", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Band band = Band.find(Integer.parseInt(request.params(":band_id")));
-      Venue newVenue = new Venue(request.queryParams("venue_input"));
-      if ((newVenue.getVenueName()).trim().length() != 0) {
-        newVenue.save();
+      String[] checkedVenueId = request.queryParamsValues("venue_input");
+      for (String eachVenueId : checkedVenueId) {
+        Venue newVenue = Venue.find(Integer.parseInt(eachVenueId));
         band.addVenue(newVenue);
       }
       model.put("band", band);
       response.redirect("/bands/" + band.getBandId());
+      return null;
+    });
+
+    post("/venues/:venue_id/venueBand_form", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Venue venue = Venue.find(Integer.parseInt(request.params(":venue_id")));
+      String[] checkedBandId = request.queryParamsValues("band_input");
+      for (String eachBandId : checkedBandId) {
+        Band newBand = Band.find(Integer.parseInt(eachBandId));
+        venue.addBand(newBand);
+      }
+      model.put("venue", venue);
+      response.redirect("/venues/" + venue.getVenueId());
       return null;
     });
 
@@ -99,14 +119,6 @@ public class App {
       model.put("venue", venue);
       // new
       model.put("template", "templates/band.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    get("/venues/:venue_id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Venue venue = Venue.find(Integer.parseInt(request.params(":venue_id")));
-      model.put("venue", venue);
-      model.put("template", "templates/venue.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
