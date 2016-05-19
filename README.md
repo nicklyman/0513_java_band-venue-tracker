@@ -37,7 +37,7 @@ _Database details listed below:_
 
 ## Known Bugs
 
-_User is able to enter multiple bands/venues with the same name and they are given different IDs. When viewing a venue, the complete list of bands that performed there is not displayed._
+_User is able to enter multiple bands/venues with the same name and they are given different IDs._
 
 ## Support and contact details
 
