@@ -28,7 +28,7 @@
   <label for="venue_input">Add a Venue Where $band.getBandName() Has Played</label>
   <br>
   #foreach($venue in $allVenues)
-    <input type="checkbox" class="venue_input" name="venue_input" value="$venue.getVenueId()"> $venue.getVenueName()<br>
+    <input id="check_venue" type="checkbox" class="venue_input" name="venue_input" value="$venue.getVenueId()"> $venue.getVenueName()<br>
   #end
   <br>
   <button id="add_venue" type="submit" class="btn btn-success">This Venue Has Hosted $band.getBandName()</button>

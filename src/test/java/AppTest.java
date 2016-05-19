@@ -32,7 +32,7 @@ public class AppTest extends FluentTest {
   public void bandIsCreatedAndDisplayedTest() {
     goTo("http://localhost:4567/");
     fill("#band_input").with("Black Flag");
-    submit(".btn");
+    submit("#add_band_button");
     assertThat(pageSource()).contains("Black Flag");
   }
 
@@ -40,7 +40,7 @@ public class AppTest extends FluentTest {
   public void venueIsCreatedAndDisplayedTest() {
     goTo("http://localhost:4567/");
     fill("#venue_input").with("White Eagle");
-    submit(".btn");
+    submit("#add_venue_button");
     assertThat(pageSource()).contains("White Eagle");
   }
 
@@ -66,11 +66,13 @@ public class AppTest extends FluentTest {
     public void venueIsAddedToBandTest() {
       Band testBand = new Band("U2");
       testBand.save();
+      Venue testVenue = new Venue("PDX");
+      testVenue.save();
       String url = String.format("http://localhost:4567/bands/%d", testBand.getBandId());
       goTo(url);
-      fill("#venue_input").with("Edgefield");
-      submit("#add_venue");
-      assertThat(pageSource()).contains("Edgefield");
+      find("#check_venue").click();
+      submit("#add_venue_to_band");
+      assertThat(pageSource()).contains("PDX");
     }
 
   @Test
